@@ -35,10 +35,10 @@
     .shell { width: min(100%, var(--max)); margin-inline: auto; padding-inline: var(--pad); }
     .eyebrow { display: flex; align-items: center; gap: .65rem; margin: 0 0 1.1rem; font-size: .68rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 1.9rem; height: 2px; background: currentColor; }
-    .button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; gap: .7rem; padding: .8rem 1.05rem; border: 1px solid currentColor; font-size: .69rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease, background .2s ease, transform .2s ease; }
-    .button:hover, .button:focus-visible { transform: translateY(-2px); }
+    .button { display: inline-flex; min-height: 3rem; align-items: center; justify-content: center; gap: .7rem; padding: .8rem 1.05rem; border: 1px solid var(--white); color: var(--white); background: var(--ink); font-size: .69rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease; }
+    .button:hover, .button:focus-visible { color: var(--ink); background: var(--white); border-color: var(--white); transform: translateY(-2px); }
     .button--light { color: var(--ink); background: var(--white); border-color: var(--white); }
-    .button--light:hover, .button--light:focus-visible { color: var(--white); background: transparent; }
+    .button--light:hover, .button--light:focus-visible { color: var(--white); background: var(--ink); border-color: var(--white); }
 
     .progress { position: fixed; inset: 0 auto auto 0; z-index: 200; width: 0; height: 3px; background: var(--blue); }
     .site-header { position: fixed; inset: 0 0 auto; z-index: 50; color: var(--white); background: rgba(16, 16, 16, .86); border-bottom: 1px solid var(--line-light); backdrop-filter: blur(14px); }
@@ -49,7 +49,8 @@
     .nav-links a { font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
     .nav-links a:not(.nav-cta) { color: #c9c9c5; }
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--white); }
-    .nav-cta { padding: .62rem .8rem; border: 1px solid var(--white); }
+    .nav-cta { padding: .62rem .8rem; border: 1px solid var(--white); transition: color .2s ease, background .2s ease, transform .2s ease; }
+    .nav-cta:hover, .nav-cta:focus-visible { color: var(--ink) !important; background: var(--white); transform: translateY(-2px); }
     .nav-toggle { display: none; width: 2.8rem; height: 2.8rem; padding: .65rem; border: 1px solid var(--line-light); background: transparent; cursor: pointer; }
     .nav-toggle span { display: block; height: 1px; margin: .28rem 0; background: var(--white); }
 
