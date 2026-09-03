@@ -127,16 +127,15 @@
     .education-card p { margin: 0; color: var(--muted); }
     .coursework { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 2rem; }
 
-    .skills-section { color: #ebe9e2; background: #17294f; }
-    .skills-section .section-intro { color: rgba(235,233,226,.7); }
-    .skills-section .section-title, .skills-section .eyebrow { color: #f5f2e9; }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.025); gap: 0; }
-    .skill-card { min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); color: #ebe9e2; background: transparent; }
-    .skill-card + .skill-card { border-left: 1px solid rgba(255,255,255,.2); }
-    .skill-card small { color: #aebbd8; font-size: .62rem; font-weight: 850; letter-spacing: .14em; }
+    .skills-section { color: var(--ink); background: var(--blue); }
+    .skills-section .section-intro { color: rgba(255,255,255,.78); }
+    .skills-section .section-title, .skills-section .eyebrow { color: var(--white); }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--white); background: var(--white); gap: 1px; }
+    .skill-card { min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); color: var(--white); background: var(--blue); }
+    .skill-card small { font-size: .62rem; font-weight: 850; letter-spacing: .14em; opacity: .7; }
     .skill-card h3 { margin: 1.3rem 0 1.8rem; font: 850 clamp(1.75rem, 2.8vw, 2.7rem)/1 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
     .skill-card ul { margin: 0; padding: 0; list-style: none; }
-    .skill-card li { padding: .58rem 0; border-top: 1px solid rgba(255,255,255,.16); color: #d4d7df; font-size: .72rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
+    .skill-card li { padding: .58rem 0; border-top: 1px solid rgba(255,255,255,.38); font-size: .72rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
 
     .contact-section { color: var(--white); background: var(--ink); overflow: hidden; }
     .contact-grid { display: grid; grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, .65fr); gap: clamp(3rem, 8vw, 8rem); align-items: end; }
@@ -174,7 +173,6 @@
       .role-main { grid-template-columns: 1fr; gap: 1rem; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-card { min-height: 0; }
-      .skill-card + .skill-card { border-top: 1px solid rgba(255,255,255,.2); border-left: 0; }
     }
 
     @media (max-width: 700px) {
