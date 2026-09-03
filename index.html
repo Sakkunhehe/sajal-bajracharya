@@ -127,15 +127,16 @@
     .education-card p { margin: 0; color: var(--muted); }
     .coursework { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 2rem; }
 
-    .skills-section { color: var(--ink); background: var(--blue); }
-    .skills-section .section-intro { color: rgba(255,255,255,.78); }
-    .skills-section .section-title, .skills-section .eyebrow { color: var(--white); }
-    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--white); background: var(--white); gap: 1px; }
-    .skill-card { min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); color: var(--white); background: var(--blue); }
-    .skill-card small { font-size: .62rem; font-weight: 850; letter-spacing: .14em; opacity: .7; }
+    .skills-section { color: #ebe9e2; background: #17294f; }
+    .skills-section .section-intro { color: rgba(235,233,226,.7); }
+    .skills-section .section-title, .skills-section .eyebrow { color: #f5f2e9; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.025); gap: 0; }
+    .skill-card { min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); color: #ebe9e2; background: transparent; }
+    .skill-card + .skill-card { border-left: 1px solid rgba(255,255,255,.2); }
+    .skill-card small { color: #aebbd8; font-size: .62rem; font-weight: 850; letter-spacing: .14em; }
     .skill-card h3 { margin: 1.3rem 0 1.8rem; font: 850 clamp(1.75rem, 2.8vw, 2.7rem)/1 var(--display); letter-spacing: -.04em; text-transform: uppercase; }
     .skill-card ul { margin: 0; padding: 0; list-style: none; }
-    .skill-card li { padding: .58rem 0; border-top: 1px solid rgba(255,255,255,.38); font-size: .72rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
+    .skill-card li { padding: .58rem 0; border-top: 1px solid rgba(255,255,255,.16); color: #d4d7df; font-size: .72rem; font-weight: 750; letter-spacing: .07em; text-transform: uppercase; }
 
     .contact-section { color: var(--white); background: var(--ink); overflow: hidden; }
     .contact-grid { display: grid; grid-template-columns: minmax(18rem, 1.15fr) minmax(16rem, .65fr); gap: clamp(3rem, 8vw, 8rem); align-items: end; }
@@ -173,6 +174,7 @@
       .role-main { grid-template-columns: 1fr; gap: 1rem; }
       .skills-grid { grid-template-columns: 1fr; }
       .skill-card { min-height: 0; }
+      .skill-card + .skill-card { border-top: 1px solid rgba(255,255,255,.2); border-left: 0; }
     }
 
     @media (max-width: 700px) {
@@ -278,7 +280,7 @@
         <div class="projects">
           <article class="project reveal"><span class="project-no">01</span><h3>Responsive web projects</h3><div class="project-copy"><p>Developed and deployed user-friendly websites during training, applying responsive layouts, UI/UX principles, optimization and cross-browser compatibility.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Responsive design</span></div></div></article>
           <article class="project reveal"><span class="project-no">02</span><h3>Academic data analysis</h3><div class="project-copy"><p>Completed projects involving data cleaning, visualization, reporting and database management, applying BCA coursework to practical scenarios.</p><div class="tags"><span class="tag">SQL</span><span class="tag">Excel</span><span class="tag">Data cleaning</span><span class="tag">Visualization</span></div></div></article>
-          <article class="project reveal"><span class="project-no">03</span><h3>E-commerce creative design</h3><div class="project-copy"><p>Produced banners, promotional creatives, product-listing visuals and social media graphics while maintaining consistent branding across platforms.</p><div class="tags"><span class="tag">Photoshop</span><span class="tag">Canva</span><span class="tag">PicsArt</span><span class="tag">Brand consistency</span></div></div></article>
+          <article class="project reveal"><span class="project-no">03</span><h3>E-commerce creative design</h3><div class="project-copy"><p>Produced banners, promotional creatives, product-listing visuals and social media graphics while maintaining consistent branding across platforms.</p><div class="tags"><span class="tag">Photoshop</span><span class="tag">Canva</span><span class="tag">Brand consistency</span></div></div></article>
           <article class="project reveal"><span class="project-no">04</span><h3>SEO &amp; content optimization</h3><div class="project-copy"><p>Applying keyword research, competitor analysis and on-page optimization to improve content relevance, clarity and discoverability.</p><div class="tags"><span class="tag">Keyword research</span><span class="tag">Competitor analysis</span><span class="tag">On-page SEO</span><span class="tag">Content optimization</span></div></div></article>
         </div>
       </div>
@@ -290,7 +292,7 @@
         <div class="timeline">
           <article class="role reveal"><div class="role-meta">Mar 2026 — Present<br>Kathmandu, Nepal</div><div class="role-main"><h3>Junior SEO Executive <span>Arksh Group</span></h3><ul><li>Conduct keyword and competitor research to identify content opportunities.</li><li>Support on-page SEO, content review and optimization across digital projects.</li><li>Help translate research findings into clear, practical SEO priorities.</li></ul></div></article>
           <article class="role reveal"><div class="role-meta">18 Dec 2025 — 18 Mar 2026<br>Kathmandu, Nepal</div><div class="role-main"><h3>SEO Intern <span>Arksh Group</span></h3><ul><li>Assisted with keyword research, competitor analysis and content discovery.</li><li>Learned practical on-page SEO and content-optimization workflows.</li><li>Supported the team with research and day-to-day SEO tasks.</li></ul></div></article>
-          <article class="role reveal"><div class="role-meta">Sep 2025 — Dec 2025<br>Kathmandu, Nepal</div><div class="role-main"><h3>Graphic Designing Intern <span>Hardware Pasal</span></h3><ul><li>Designed banners, promotional creatives and social media graphics for an e-commerce platform.</li><li>Created visual content for product listings and marketing promotions using Canva, Adobe Photoshop and PicsArt.</li><li>Helped maintain consistent visual branding across platforms and learned digital design workflows.</li></ul></div></article>
+          <article class="role reveal"><div class="role-meta">Sep 2025 — Dec 2025<br>Kathmandu, Nepal</div><div class="role-main"><h3>Graphic Designing Intern <span>Hardware Pasal</span></h3><ul><li>Designed banners, promotional creatives and social media graphics for an e-commerce platform.</li><li>Created visual content for product listings and marketing promotions using Canva and Adobe Photoshop.</li><li>Helped maintain consistent visual branding across platforms and learned digital design workflows.</li></ul></div></article>
           <article class="role reveal"><div class="role-meta">Jan 2023 — Present<br>Academic projects</div><div class="role-main"><h3>Junior Data Analyst <span>BCA coursework</span></h3><ul><li>Use SQL and Excel for data analysis and reporting.</li><li>Complete projects involving data cleaning, visualization and database management.</li><li>Apply data-analysis skills from BCA coursework to practical scenarios.</li></ul></div></article>
           <article class="role reveal"><div class="role-meta">May 2019 — Sep 2019<br>Training</div><div class="role-main"><h3>Web Design Course <span>IT Training Nepal</span></h3><ul><li>Gained hands-on experience in HTML, CSS, JavaScript and responsive web design.</li><li>Developed and deployed user-friendly websites as part of training projects.</li><li>Learned UI/UX, website optimization and cross-browser compatibility principles.</li></ul></div></article>
         </div>
@@ -312,7 +314,7 @@
         <div class="section-head reveal"><div><p class="eyebrow">Skills</p><h2 class="section-title" id="skills-title">A connected<br>toolkit.</h2></div><p class="section-intro">Technical and creative tools supported by communication, teamwork, attention to detail and a willingness to keep learning.</p></div>
         <div class="skills-grid reveal">
           <article class="skill-card"><small>01 / Search</small><h3>SEO &amp; content</h3><ul><li>Keyword research</li><li>Competitor analysis</li><li>On-page SEO</li><li>Content optimization</li><li>Search intent</li><li>SEO research</li></ul></article>
-          <article class="skill-card"><small>02 / Visual</small><h3>Graphic design</h3><ul><li>Canva</li><li>Adobe Photoshop</li><li>PicsArt</li><li>Promotional creatives</li><li>Product listing graphics</li><li>Visual brand consistency</li></ul></article>
+          <article class="skill-card"><small>02 / Visual</small><h3>Graphic design</h3><ul><li>Canva</li><li>Adobe Photoshop</li><li>Promotional creatives</li><li>Product listing graphics</li><li>Visual brand consistency</li></ul></article>
           <article class="skill-card"><small>03 / Technical</small><h3>Web &amp; data</h3><ul><li>HTML &amp; CSS</li><li>JavaScript basics</li><li>Responsive web design</li><li>SQL &amp; Excel</li><li>Data analysis</li><li>Database management</li></ul></article>
         </div>
       </div>
