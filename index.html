@@ -239,6 +239,15 @@
       .social-link, .social-toggle { width: 2.65rem; height: 2.65rem; }
     }
 
+    @media (max-width: 23.75rem) {
+      :root { --pad: clamp(.875rem, 5vw, 1.125rem); }
+      .section-title { font-size: clamp(1.75rem, 10.5vw, 2.5rem); letter-spacing: -.045em; }
+      .manifesto { font-size: clamp(1.5rem, 8vw, 1.85rem); }
+      .contact-section h2 { font-size: clamp(2rem, 11.5vw, 2.7rem); }
+      .education-card, .skill-card { padding: 1.25rem; }
+      .portrait-number { font-size: 3.35rem; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
