@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#101010">
   <title>Sajal Bajracharya — SEO, Web &amp; Design</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232b55d9'/%3E%3Ctext x='32' y='40' text-anchor='middle' fill='white' font-family='Arial' font-weight='800' font-size='23'%3ESB%3C/text%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     :root {
       --ink: #101010;
@@ -41,6 +42,18 @@
     .button:hover, .button:focus-visible { transform: translateY(-2px); }
     .button--light { color: var(--ink); background: var(--white); border-color: var(--white); }
     .button--light:hover, .button--light:focus-visible { color: var(--white); background: transparent; }
+
+    .site-loader { display: none; }
+    .js body.is-loading { overflow: hidden; }
+    .js .site-loader { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; color: var(--white); background: var(--ink); opacity: 1; visibility: visible; transition: opacity .55s ease, visibility .55s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+    .js .site-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(1.025); }
+    .loader-stage { width: min(18rem, 72vw); display: grid; justify-items: center; gap: 1rem; }
+    .loader-mark { position: relative; width: clamp(4.25rem, 8vw, 5.5rem); aspect-ratio: 1; display: grid; place-items: center; color: var(--white); background: var(--blue); font-size: clamp(.95rem, 2vw, 1.25rem); font-weight: 900; letter-spacing: -.04em; transform: rotate(-5deg); clip-path: inset(100% 0 0); animation: loader-mark-in .65s .12s cubic-bezier(.2,.8,.2,1) forwards; }
+    .loader-mark::before, .loader-mark::after { content: ""; position: absolute; inset: -.65rem; border: 1px solid rgba(255,255,255,.18); opacity: 0; animation: loader-ring 1s .35s ease-out forwards; }
+    .loader-mark::after { inset: -1.25rem; border-style: dashed; animation-delay: .48s; }
+    .loader-name { margin: .8rem 0 0; font-size: .66rem; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; opacity: 0; transform: translateY(.55rem); animation: loader-name-in .5s .48s ease forwards; }
+    .loader-line { width: 100%; height: 1px; margin-top: .35rem; overflow: hidden; background: var(--line-light); }
+    .loader-line::after { content: ""; display: block; width: 100%; height: 100%; background: var(--blue); transform: scaleX(0); transform-origin: left; animation: loader-line-in .9s .55s cubic-bezier(.65,0,.35,1) forwards; }
 
     .progress { position: fixed; inset: 0 auto auto 0; z-index: 200; width: 0; height: 3px; background: var(--blue); }
     .site-header { position: fixed; inset: 0 0 auto; z-index: 50; color: var(--white); background: rgba(16, 16, 16, .86); border-bottom: 1px solid var(--line-light); backdrop-filter: blur(14px); }
@@ -162,8 +175,31 @@
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; padding-block: 2rem; font-size: .63rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
     .reveal { opacity: 0; transform: translateY(1.3rem); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.8,.2,1); }
     .reveal.in { opacity: 1; transform: none; }
+    .js .hero-copy.reveal > * { opacity: 0; transform: translateY(1rem); }
+    .js .hero-copy.reveal.in > * { animation: hero-item-in .65s cubic-bezier(.2,.8,.2,1) forwards; }
+    .js .hero-copy.reveal.in > :nth-child(1) { animation-delay: .05s; }
+    .js .hero-copy.reveal.in > :nth-child(2) { animation-delay: .13s; }
+    .js .hero-copy.reveal.in > :nth-child(3) { animation-delay: .21s; }
+    .js .hero-copy.reveal.in > :nth-child(4) { animation-delay: .29s; }
+    .js .hero-copy.reveal.in > :nth-child(5) { animation-delay: .37s; }
+    .js .portrait-wrap.reveal .portrait-frame, .js .portrait-wrap.reveal .portrait-label, .js .portrait-wrap.reveal .portrait-ring { opacity: 0; }
+    .js .portrait-wrap.reveal.in .portrait-frame { animation: portrait-in .85s .16s cubic-bezier(.2,.8,.2,1) forwards; }
+    .js .portrait-wrap.reveal.in .portrait-label { animation: label-in .55s .58s cubic-bezier(.2,.8,.2,1) forwards; }
+    .js .portrait-wrap.reveal.in .portrait-ring { animation: ring-in .75s .36s ease forwards, ring-drift 8s 1.2s ease-in-out infinite; }
+    .js body.is-loading .site-header { opacity: 0; transform: translateY(-100%); }
+    .js body.site-ready .site-header { animation: header-in .55s cubic-bezier(.2,.8,.2,1) both; }
 
     @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes loader-mark-in { from { clip-path: inset(100% 0 0); transform: rotate(-12deg) scale(.82); } to { clip-path: inset(0); transform: rotate(-5deg) scale(1); } }
+    @keyframes loader-ring { from { opacity: 0; transform: scale(.75) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+    @keyframes loader-name-in { to { opacity: 1; transform: none; } }
+    @keyframes loader-line-in { to { transform: scaleX(1); } }
+    @keyframes hero-item-in { to { opacity: 1; transform: none; } }
+    @keyframes portrait-in { from { opacity: 0; transform: translateY(1.5rem) rotate(1.5deg) scale(.97); } to { opacity: 1; transform: none; } }
+    @keyframes label-in { from { opacity: 0; transform: translateY(.75rem) rotate(-5deg); } to { opacity: 1; transform: rotate(-2deg); } }
+    @keyframes ring-in { from { opacity: 0; transform: scale(.7) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+    @keyframes ring-drift { 0%, 100% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(-.35rem, .35rem) rotate(5deg); } }
+    @keyframes header-in { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
 
     @media (max-width: 67rem) {
       .hero { min-height: auto; padding-top: 7rem; }
@@ -251,10 +287,20 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
+      .js .site-loader { display: none; }
+      .js body.is-loading { overflow: auto; }
+      .js body.is-loading .site-header, .js .hero-copy.reveal > *, .js .portrait-wrap.reveal .portrait-frame, .js .portrait-wrap.reveal .portrait-label, .js .portrait-wrap.reveal .portrait-ring { opacity: 1; transform: none; }
     }
   </style>
 </head>
-<body>
+<body class="is-loading">
+  <div class="site-loader" role="status" aria-label="Loading Sajal Bajracharya's portfolio">
+    <div class="loader-stage">
+      <div class="loader-mark" aria-hidden="true">SB</div>
+      <p class="loader-name">Sajal Bajracharya</p>
+      <div class="loader-line" aria-hidden="true"></div>
+    </div>
+  </div>
   <div class="progress" aria-hidden="true"></div>
 
   <header class="site-header">
@@ -401,6 +447,11 @@
     const navLinks = document.querySelector('.nav-links');
     const socialDock = document.querySelector('.social-dock');
     const socialToggle = document.querySelector('.social-toggle');
+    const siteLoader = document.querySelector('.site-loader');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const loaderStartedAt = performance.now();
+    let revealsStarted = false;
+    let loaderFinished = false;
 
     const updateProgress = () => {
       const available = document.documentElement.scrollHeight - innerHeight;
@@ -446,19 +497,51 @@
     addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: .12 });
-      document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
-    } else {
-      document.querySelectorAll('.reveal').forEach((element) => element.classList.add('in'));
-    }
+    const startReveals = () => {
+      if (revealsStarted) return;
+      revealsStarted = true;
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12 });
+        document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+      } else {
+        document.querySelectorAll('.reveal').forEach((element) => element.classList.add('in'));
+      }
+    };
+
+    const finishLoader = () => {
+      if (loaderFinished) return;
+      loaderFinished = true;
+      clearTimeout(loaderFallback);
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('site-ready');
+      startReveals();
+
+      if (reduceMotion) {
+        siteLoader.remove();
+        return;
+      }
+
+      siteLoader.classList.add('is-leaving');
+      setTimeout(() => siteLoader.remove(), 650);
+    };
+
+    const queueLoaderExit = () => {
+      const minimumDuration = reduceMotion ? 0 : 1550;
+      const remaining = Math.max(0, minimumDuration - (performance.now() - loaderStartedAt));
+      setTimeout(finishLoader, remaining);
+    };
+
+    const loaderFallback = setTimeout(finishLoader, 4000);
+    if (document.readyState === 'complete') queueLoaderExit();
+    else addEventListener('load', queueLoaderExit, { once: true });
   </script>
 </body>
 </html>
