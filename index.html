@@ -176,7 +176,9 @@
     }
 
     @media (max-width: 700px) {
+      :root { --pad: clamp(1rem, 5vw, 1.5rem); }
       html { scroll-padding-top: 4.5rem; }
+      body { font-size: .9rem; }
       .nav { min-height: 4.25rem; }
       .brand > span:last-child { display: none; }
       .nav-toggle { display: block; }
@@ -184,16 +186,21 @@
       .nav-links.open { display: flex; }
       .nav-links a { padding: .85rem 0; }
       .nav-cta { margin-top: .35rem; padding-inline: .8rem !important; text-align: center; }
-      .hero { min-height: auto; padding: 7rem 0 3.5rem; }
+      .hero { min-height: auto; padding: 5.5rem 0 3.25rem; }
       .hero-grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: clamp(3.35rem, 16vw, 5.4rem); }
       .hero h1 span { font-size: .68em; letter-spacing: -.04em; }
-      .portrait-wrap { min-height: 28rem; order: -1; }
-      .portrait-frame { inset: 0 1rem 1.5rem; }
+      .hero-lead { font-size: .98rem; }
+      .hero-note { gap: .8rem 1.4rem; margin-top: 2rem; }
+      .portrait-wrap { min-height: clamp(23rem, 105vw, 28rem); order: -1; }
+      .portrait-frame { inset: 0 .5rem 1.35rem; }
       .portrait-label { left: .5rem; }
-      .portrait-number { right: .25rem; }
+      .portrait-number { right: .25rem; font-size: 4rem; }
+      .section-pad { padding-block: clamp(4.25rem, 15vw, 5.5rem); }
       .section-head, .about-grid, .education-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
       .section-head { margin-bottom: 2.7rem; }
+      .section-title { font-size: clamp(2.65rem, 13vw, 3.8rem); }
+      .manifesto { font-size: clamp(1.85rem, 8.8vw, 2.65rem); }
       .about-aside { position: static; }
       .principles { grid-template-columns: 1fr; }
       .principle, .principle + .principle { padding: 1rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
@@ -202,15 +209,23 @@
       .project:hover { margin-inline: 0; padding-inline: 0; color: inherit; background: transparent; }
       .project:hover .project-copy p { color: var(--muted); }
       .role { grid-template-columns: 1fr; gap: 1rem; padding: 2.15rem 0; }
+      .education-card { padding: 1.5rem; }
+      .skill-card { padding: 1.5rem; }
+      .contact-section h2 { font-size: clamp(2.7rem, 13vw, 4.2rem); }
       .contact-copy { margin-top: 0; }
       .footer-inner { padding-block: 1.5rem; align-items: flex-start; flex-direction: column; justify-content: center; }
     }
 
     @media (max-width: 420px) {
-      .portrait-wrap { min-height: 23rem; }
-      .hero h1 { font-size: clamp(3rem, 15.5vw, 4.2rem); }
+      .portrait-wrap { min-height: 22rem; }
+      .portrait-label { max-width: 11rem; padding: .55rem .65rem; font-size: .56rem; }
+      .hero h1 { font-size: clamp(2.85rem, 15vw, 3.95rem); }
+      .availability { font-size: .58rem; letter-spacing: .1em; }
       .hero-actions .button, .contact-actions .button { width: 100%; }
+      .project { grid-template-columns: 1fr; }
+      .project-no, .project-copy { grid-column: 1; }
       .education-card { box-shadow: .45rem .45rem 0 var(--blue); }
+      .contact-details { align-items: flex-start; flex-direction: column; }
       .social-dock { right: .7rem; bottom: .7rem; }
       .social-link, .social-toggle { width: 2.65rem; height: 2.65rem; }
     }
@@ -345,6 +360,25 @@
   </aside>
 
   <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    const resetInitialScroll = () => {
+      const root = document.documentElement;
+      root.style.scrollBehavior = 'auto';
+      scrollTo(0, 0);
+      requestAnimationFrame(() => root.style.removeProperty('scroll-behavior'));
+    };
+
+    try {
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    } catch (_) {
+      // Local file previews can restrict history updates; scrolling still resets below.
+    }
+
+    resetInitialScroll();
+    addEventListener('load', () => requestAnimationFrame(resetInitialScroll), { once: true });
+    addEventListener('pageshow', () => requestAnimationFrame(resetInitialScroll), { once: true });
+
     const progress = document.querySelector('.progress');
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
