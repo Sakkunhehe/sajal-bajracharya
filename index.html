@@ -54,6 +54,8 @@
     .loader-name { margin: .8rem 0 0; font-size: .66rem; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; opacity: 0; transform: translateY(.55rem); animation: loader-name-in .5s .48s ease forwards; }
     .loader-line { width: 100%; height: 1px; margin-top: .35rem; overflow: hidden; background: var(--line-light); }
     .loader-line::after { content: ""; display: block; width: 100%; height: 100%; background: var(--blue); transform: scaleX(0); transform-origin: left; animation: loader-line-in .9s .55s cubic-bezier(.65,0,.35,1) forwards; }
+    .logo-flyer { position: fixed; z-index: 1200; display: grid; place-items: center; color: var(--white); background: var(--blue); font-weight: 900; letter-spacing: -.04em; transform: rotate(-5deg); transform-origin: center; pointer-events: none; will-change: left, top, width, height, font-size, transform; }
+    .logo-transition-hidden { opacity: 0 !important; }
 
     .progress { position: fixed; inset: 0 auto auto 0; z-index: 200; width: 0; height: 3px; background: var(--blue); }
     .site-header { position: fixed; inset: 0 0 auto; z-index: 50; color: var(--white); background: rgba(16, 16, 16, .86); border-bottom: 1px solid var(--line-light); backdrop-filter: blur(14px); }
@@ -188,6 +190,7 @@
     .js .portrait-wrap.reveal.in .portrait-ring { animation: ring-in .75s .36s ease forwards, ring-drift 8s 1.2s ease-in-out infinite; }
     .js body.is-loading .site-header { opacity: 0; transform: translateY(-100%); }
     .js body.site-ready .site-header { animation: header-in .55s cubic-bezier(.2,.8,.2,1) both; }
+    .js body.logo-transition-static-header .site-header { opacity: 1; transform: none; animation: none; }
 
     @keyframes marquee { to { transform: translateX(-50%); } }
     @keyframes loader-mark-in { from { clip-path: inset(100% 0 0); transform: rotate(-12deg) scale(.82); } to { clip-path: inset(0); transform: rotate(-5deg) scale(1); } }
@@ -516,21 +519,123 @@
       }
     };
 
+    const revealSite = () => {
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('site-ready');
+      startReveals();
+    };
+
+    const exitLoaderNormally = () => {
+      revealSite();
+      if (reduceMotion) {
+        siteLoader?.remove();
+        return;
+      }
+
+      siteLoader?.classList.add('is-leaving');
+      setTimeout(() => siteLoader?.remove(), 650);
+    };
+
     const finishLoader = () => {
       if (loaderFinished) return;
       loaderFinished = true;
       clearTimeout(loaderFallback);
-      document.body.classList.remove('is-loading');
-      document.body.classList.add('site-ready');
-      startReveals();
 
-      if (reduceMotion) {
-        siteLoader.remove();
+      const sourceMark = siteLoader?.querySelector('.loader-mark');
+      const targetMark = document.querySelector('.brand-mark');
+      if (reduceMotion || !sourceMark || !targetMark || typeof sourceMark.animate !== 'function') {
+        exitLoaderNormally();
         return;
       }
 
+      const sourceRect = sourceMark.getBoundingClientRect();
+      const sourceStyle = getComputedStyle(sourceMark);
+      document.body.classList.add('logo-transition-static-header');
+      const targetRect = targetMark.getBoundingClientRect();
+      const targetStyle = getComputedStyle(targetMark);
+      const visualBox = (element, rectangle) => {
+        const style = getComputedStyle(element);
+        const width = parseFloat(style.width);
+        const height = parseFloat(style.height);
+        return {
+          left: rectangle.left + (rectangle.width - width) / 2,
+          top: rectangle.top + (rectangle.height - height) / 2,
+          width,
+          height
+        };
+      };
+      const from = visualBox(sourceMark, sourceRect);
+      const to = visualBox(targetMark, targetRect);
+      const flyer = document.createElement('div');
+      flyer.className = 'logo-flyer';
+      flyer.textContent = sourceMark.textContent;
+      flyer.setAttribute('aria-hidden', 'true');
+      Object.assign(flyer.style, {
+        left: `${from.left}px`,
+        top: `${from.top}px`,
+        width: `${from.width}px`,
+        height: `${from.height}px`,
+        fontFamily: sourceStyle.fontFamily,
+        fontSize: sourceStyle.fontSize,
+        fontWeight: sourceStyle.fontWeight,
+        letterSpacing: sourceStyle.letterSpacing,
+        lineHeight: sourceStyle.lineHeight
+      });
+      document.body.append(flyer);
+      sourceMark.classList.add('logo-transition-hidden');
+      targetMark.classList.add('logo-transition-hidden');
+      revealSite();
       siteLoader.classList.add('is-leaving');
-      setTimeout(() => siteLoader.remove(), 650);
+
+      let transitionFinished = false;
+      let transitionFallback;
+      const completeTransition = () => {
+        if (transitionFinished) return;
+        transitionFinished = true;
+        clearTimeout(transitionFallback);
+        targetMark.classList.remove('logo-transition-hidden');
+        flyer.remove();
+        siteLoader.remove();
+        document.body.classList.remove('site-ready', 'logo-transition-static-header');
+      };
+
+      let flight;
+      try {
+        flight = flyer.animate([
+          {
+            left: `${from.left}px`,
+            top: `${from.top}px`,
+            width: `${from.width}px`,
+            height: `${from.height}px`,
+            fontSize: sourceStyle.fontSize,
+            fontWeight: sourceStyle.fontWeight,
+            letterSpacing: sourceStyle.letterSpacing,
+            lineHeight: sourceStyle.lineHeight,
+            transform: 'rotate(-5deg)'
+          },
+          {
+            left: `${to.left}px`,
+            top: `${to.top}px`,
+            width: `${to.width}px`,
+            height: `${to.height}px`,
+            fontSize: targetStyle.fontSize,
+            fontWeight: targetStyle.fontWeight,
+            letterSpacing: targetStyle.letterSpacing,
+            lineHeight: targetStyle.lineHeight,
+            transform: 'rotate(-5deg)'
+          }
+        ], {
+          duration: 850,
+          easing: 'cubic-bezier(.22, 1, .36, 1)',
+          fill: 'forwards'
+        });
+      } catch (_) {
+        completeTransition();
+        return;
+      }
+
+      transitionFallback = setTimeout(completeTransition, 1100);
+      flight.finished.then(completeTransition, completeTransition);
     };
 
     const queueLoaderExit = () => {
