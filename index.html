@@ -87,17 +87,9 @@
     .portrait-ring::after { content: ""; position: absolute; inset: 1rem -.6rem; border: 1px dashed rgba(255,255,255,.25); border-radius: inherit; }
 
     .ticker { overflow: hidden; color: var(--white); background: var(--blue); border-block: 1px solid var(--ink); }
-
-    .ticker-track { width: max-content; display: flex; padding: .85rem 0; font-size: .71rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; white-space: nowrap; animation: marquee 22s linear infinite; will-change: transform; }
-
+    .ticker-track { width: max-content; display: flex; padding: .85rem 0; font-size: .71rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; animation: marquee 26s linear infinite; }
     .ticker-track span { padding-right: 1.6rem; }
-
     .ticker-track b { margin-right: 1.6rem; font-size: .9rem; }
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
 
     section { position: relative; }
     .section-pad { padding-block: clamp(5.25rem, 9vw, 8.5rem); }
