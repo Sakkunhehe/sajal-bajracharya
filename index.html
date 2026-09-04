@@ -94,7 +94,7 @@
     section { position: relative; }
     .section-pad { padding-block: clamp(5.25rem, 9vw, 8.5rem); }
     .section-head { display: grid; grid-template-columns: minmax(min-content, .72fr) minmax(16rem, 1fr); gap: clamp(2rem, 8vw, 8rem); align-items: end; margin-bottom: clamp(2.7rem, 5vw, 4.8rem); }
-    .section-title { margin: 0; font: 900 clamp(2.8rem, 5vw, 4.8rem)/.9 var(--display); letter-spacing: -.06em; text-transform: uppercase; overflow-wrap: anywhere; }
+    .section-title { margin: 0; font: 900 clamp(2.8rem, 5vw, 4.8rem)/.9 var(--display); letter-spacing: -.06em; text-transform: uppercase; overflow-wrap: normal; word-break: normal; hyphens: none; }
     .section-intro { max-width: 36rem; margin: 0; color: var(--muted); font-size: clamp(.94rem, .25vw + .89rem, 1rem); }
 
     .about-grid { display: grid; grid-template-columns: minmax(min-content, .72fr) minmax(0, 1.28fr); gap: clamp(2.5rem, 8vw, 8rem); }
@@ -242,7 +242,7 @@
       .portrait-label { left: .5rem; }
       .portrait-number { right: .25rem; font-size: 4rem; }
       .section-pad { padding-block: clamp(4.25rem, 15vw, 5.5rem); }
-      .section-title { font-size: clamp(1.75rem, 11.5vw, 3.8rem); }
+      .section-title { font-size: clamp(2rem, 9.5vw, 3.2rem); line-height: .92; letter-spacing: -.05em; }
       .manifesto { font-size: clamp(1.85rem, 8.8vw, 2.65rem); }
       .principle:last-child:nth-child(odd) { grid-column: 1 / -1; padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
       .project:hover { margin-inline: 0; padding-inline: 0; color: inherit; background: transparent; }
