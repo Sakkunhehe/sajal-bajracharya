@@ -19,8 +19,9 @@
       --line-light: rgba(255, 255, 255, .18);
       --pad: clamp(1.25rem, 2.5vw, 3rem);
       --max: 95rem;
-      --display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-      --body: Inter, "Helvetica Neue", Arial, sans-serif;
+      --font: "Helvetica Neue", "Helvetica Neue Regular", Helvetica, Arial, sans-serif;
+      --display: var(--font);
+      --body: var(--font);
     }
 
     * { box-sizing: border-box; }
@@ -33,6 +34,7 @@
     button { color: inherit; font: inherit; }
     img { display: block; max-width: 100%; }
     h1, h2, h3, p { text-wrap: pretty; }
+    p, li { font-family: var(--body); text-align: justify; text-align-last: left; text-justify: inter-word; hyphens: auto; }
     main, section, .shell { min-width: 0; }
     .shell { width: min(100%, var(--max)); margin-inline: auto; padding-inline: var(--pad); }
     .hero-grid > *, .section-head > *, .about-grid > *, .project > *, .role > *, .role-main > *, .education-grid > *, .skills-grid > *, .contact-grid > * { min-width: 0; }
@@ -108,7 +110,7 @@
     .principle { padding: 1.4rem 1.2rem 0 0; }
     .principle + .principle { padding-left: 1.2rem; border-left: 1px solid var(--line); }
     .principle b { display: block; margin-bottom: .55rem; font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; }
-    .principle span { color: var(--muted); font-size: .85rem; }
+    .principle span { display: block; color: var(--muted); font-size: .85rem; text-align: justify; text-align-last: left; text-justify: inter-word; hyphens: auto; }
 
     .work-section { background: var(--white); border-block: 1px solid var(--line); }
     .projects { border-top: 2px solid var(--ink); }
