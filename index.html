@@ -194,6 +194,80 @@
     .js body.site-ready .site-header { animation: header-in .55s cubic-bezier(.2,.8,.2,1) both; }
     .js body.logo-transition-static-header .site-header { opacity: 1; transform: none; animation: none; }
 
+    .js main > section:not(.hero) { --section-sweep: rgba(19, 51, 155, .2); overflow: clip; isolation: isolate; }
+    .js main > section:not(.hero)::after { content: ""; position: absolute; left: -25%; top: 46%; z-index: 0; width: 150%; height: clamp(3.5rem, 9vw, 8rem); pointer-events: none; background: linear-gradient(90deg, transparent, var(--section-sweep) 24%, var(--section-sweep) 76%, transparent); opacity: 0; transform: translate3d(-75%, 0, 0) rotate(-7deg) skewX(-18deg); will-change: transform, opacity; }
+    .js main > section:not(.hero) > .shell { position: relative; z-index: 1; }
+    .js main > section:not(.hero).section-in::after { animation: section-sweep 1.15s cubic-bezier(.22, 1, .36, 1) both; }
+    .js #experience, .js #contact { --section-sweep: rgba(19, 51, 155, .34); }
+    .js #skills { --section-sweep: rgba(255, 253, 248, .2); }
+    .js main > section.section-in .eyebrow::before { transform-origin: left; animation: eyebrow-strike .65s .18s cubic-bezier(.22, 1, .36, 1) both; }
+
+    .js #about .reveal,
+    .js #work .reveal,
+    .js #experience .reveal,
+    .js #education .reveal,
+    .js #skills .reveal,
+    .js #contact .reveal { transition: none; will-change: transform, opacity, filter, clip-path; }
+
+    .js #about .about-aside.reveal { opacity: 0; filter: blur(.8rem); clip-path: inset(0 100% 0 0); transform: translate3d(-3rem, 0, 0) rotate(-2deg); }
+    .js #about .about-aside.reveal.in { animation: about-aside-in .95s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #about .about-grid > div:last-child.reveal { opacity: 0; filter: blur(.65rem); transform: translate3d(3.5rem, 2rem, 0) rotate(1.5deg) scale(.96); }
+    .js #about .about-grid > div:last-child.reveal.in { animation: about-copy-in 1s .12s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #about .principle { opacity: 0; transform: translateY(2.4rem) rotate(3deg) scale(.9); }
+    .js #about .reveal.in .principle { animation: principle-pop .65s cubic-bezier(.34, 1.56, .64, 1) forwards; }
+    .js #about .reveal.in .principle:nth-child(1) { animation-delay: .48s; }
+    .js #about .reveal.in .principle:nth-child(2) { animation-delay: .6s; }
+    .js #about .reveal.in .principle:nth-child(3) { animation-delay: .72s; }
+
+    .js #work .section-head.reveal,
+    .js #experience .section-head.reveal,
+    .js #skills .section-head.reveal { opacity: 0; filter: blur(.7rem); transform: translateY(3.5rem) rotate(-2deg) scale(.94); }
+    .js #work .section-head.reveal.in,
+    .js #experience .section-head.reveal.in,
+    .js #skills .section-head.reveal.in { animation: heading-slam .85s cubic-bezier(.16, 1, .3, 1) forwards; }
+
+    .js #work .project.reveal { --enter-x: -7rem; opacity: 0; filter: blur(.55rem); transform: translate3d(var(--enter-x), 2rem, 0) rotate(-2.5deg) scale(.96); transform-origin: left center; }
+    .js #work .project.reveal:nth-child(even) { --enter-x: 7rem; transform-origin: right center; }
+    .js #work .project.reveal.in { animation: project-swipe-in .85s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #work .project.reveal.in .project-no { animation: number-spin .75s .12s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .js #work .project.reveal.in .tag { animation: tag-pop .45s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .js #work .project.reveal.in .tag:nth-child(1) { animation-delay: .28s; }
+    .js #work .project.reveal.in .tag:nth-child(2) { animation-delay: .35s; }
+    .js #work .project.reveal.in .tag:nth-child(3) { animation-delay: .42s; }
+    .js #work .project.reveal.in .tag:nth-child(4) { animation-delay: .49s; }
+
+    .js #experience .timeline { transform-origin: top; }
+    .js #experience.section-in .timeline { animation: timeline-draw .7s .3s cubic-bezier(.22, 1, .36, 1) both; }
+    .js #experience .role.reveal { --enter-x: -5rem; opacity: 0; filter: blur(.5rem); transform: translate3d(var(--enter-x), 1.5rem, 0) skewX(-3deg); }
+    .js #experience .role.reveal:nth-child(even) { --enter-x: 5rem; }
+    .js #experience .role.reveal.in { animation: role-track-in .8s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #experience .role.reveal.in .role-meta { animation: meta-flash .6s .18s ease both; }
+    .js #experience .role.reveal.in li { animation: list-rise .5s cubic-bezier(.22, 1, .36, 1) both; }
+    .js #experience .role.reveal.in li:nth-child(1) { animation-delay: .25s; }
+    .js #experience .role.reveal.in li:nth-child(2) { animation-delay: .34s; }
+    .js #experience .role.reveal.in li:nth-child(3) { animation-delay: .43s; }
+
+    .js #education .education-grid > div:first-child.reveal { opacity: 0; filter: blur(.7rem); transform: translate3d(-4rem, 2rem, 0) rotate(-2deg); }
+    .js #education .education-grid > div:first-child.reveal.in { animation: education-intro-in .9s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #education .education-card.reveal { --card-rotate: 5deg; opacity: 0; filter: blur(.55rem); transform: perspective(70rem) translate3d(4rem, 3rem, 0) rotateY(-18deg) rotateZ(var(--card-rotate)) scale(.92); transform-origin: bottom right; }
+    .js #education .education-card.reveal:nth-child(even) { --card-rotate: -4deg; transform-origin: top left; }
+    .js #education .education-card.reveal.in { animation: card-deal-in .95s cubic-bezier(.16, 1, .3, 1) forwards; }
+
+    .js #skills .skills-grid.reveal { opacity: 1; filter: none; transform: none; clip-path: inset(0 100% 0 0); }
+    .js #skills .skills-grid.reveal.in { animation: grid-unmask .85s cubic-bezier(.77, 0, .18, 1) forwards; }
+    .js #skills .skill-card { opacity: 0; transform: perspective(65rem) translateY(4rem) rotateX(-24deg) scale(.9); transform-origin: top; }
+    .js #skills .skills-grid.reveal.in .skill-card { animation: skill-flip-in .8s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #skills .skills-grid.reveal.in .skill-card:nth-child(1) { animation-delay: .22s; }
+    .js #skills .skills-grid.reveal.in .skill-card:nth-child(2) { animation-delay: .36s; }
+    .js #skills .skills-grid.reveal.in .skill-card:nth-child(3) { animation-delay: .5s; }
+
+    .js #contact .contact-grid.reveal { opacity: 0; filter: blur(.9rem); transform: scale(.86) rotate(-2deg); transform-origin: center; }
+    .js #contact .contact-grid.reveal.in { animation: contact-burst-in .95s cubic-bezier(.16, 1, .3, 1) forwards; }
+    .js #contact .contact-grid.reveal.in h2 span { display: inline-block; animation: contact-accent .9s .35s cubic-bezier(.34, 1.56, .64, 1) both; }
+    .js #contact .contact-grid.reveal.in .button { animation: contact-control-in .6s cubic-bezier(.34, 1.56, .64, 1) backwards; }
+    .js #contact .contact-grid.reveal.in .button:nth-child(1) { animation-delay: .48s; }
+    .js #contact .contact-grid.reveal.in .button:nth-child(2) { animation-delay: .6s; }
+
     @keyframes marquee { to { transform: translateX(-50%); } }
     @keyframes loader-mark-in { from { clip-path: inset(100% 0 0); transform: rotate(-12deg) scale(.82); } to { clip-path: inset(0); transform: rotate(-5deg) scale(1); } }
     @keyframes loader-ring { from { opacity: 0; transform: scale(.75) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
@@ -205,6 +279,26 @@
     @keyframes ring-in { from { opacity: 0; transform: scale(.7) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
     @keyframes ring-drift { 0%, 100% { transform: translate(0, 0) rotate(0); } 50% { transform: translate(-.35rem, .35rem) rotate(5deg); } }
     @keyframes header-in { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+    @keyframes section-sweep { 0% { opacity: 0; transform: translate3d(-75%, 0, 0) rotate(-7deg) skewX(-18deg); } 24% { opacity: 1; } 78% { opacity: .75; } 100% { opacity: 0; transform: translate3d(75%, 0, 0) rotate(-7deg) skewX(-18deg); } }
+    @keyframes eyebrow-strike { from { transform: scaleX(0) rotate(-10deg); } 65% { transform: scaleX(1.25) rotate(2deg); } to { transform: scaleX(1) rotate(0); } }
+    @keyframes about-aside-in { from { opacity: 0; filter: blur(.8rem); clip-path: inset(0 100% 0 0); transform: translate3d(-3rem, 0, 0) rotate(-2deg); } to { opacity: 1; filter: none; clip-path: inset(0); transform: none; } }
+    @keyframes about-copy-in { from { opacity: 0; filter: blur(.65rem); transform: translate3d(3.5rem, 2rem, 0) rotate(1.5deg) scale(.96); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes principle-pop { from { opacity: 0; transform: translateY(2.4rem) rotate(3deg) scale(.9); } 70% { opacity: 1; transform: translateY(-.3rem) rotate(-1deg) scale(1.025); } to { opacity: 1; transform: none; } }
+    @keyframes heading-slam { from { opacity: 0; filter: blur(.7rem); transform: translateY(3.5rem) rotate(-2deg) scale(.94); } 72% { opacity: 1; filter: none; transform: translateY(-.35rem) rotate(.35deg) scale(1.012); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes project-swipe-in { from { opacity: 0; filter: blur(.55rem); transform: translate3d(var(--enter-x), 2rem, 0) rotate(-2.5deg) scale(.96); } 70% { opacity: 1; filter: none; transform: translate3d(0, -.25rem, 0) rotate(.4deg) scale(1.008); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes number-spin { from { opacity: 0; transform: rotate(-180deg) scale(.4); } to { opacity: 1; transform: none; } }
+    @keyframes tag-pop { from { opacity: 0; transform: translateY(.7rem) scale(.72) rotate(-5deg); } to { opacity: 1; transform: none; } }
+    @keyframes timeline-draw { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+    @keyframes role-track-in { from { opacity: 0; filter: blur(.5rem); transform: translate3d(var(--enter-x), 1.5rem, 0) skewX(-3deg); } 74% { opacity: 1; filter: none; transform: translate3d(0, -.2rem, 0) skewX(.5deg); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes meta-flash { from { opacity: 0; letter-spacing: .35em; } to { opacity: 1; letter-spacing: .12em; } }
+    @keyframes list-rise { from { opacity: 0; transform: translateY(1rem); } to { opacity: 1; transform: none; } }
+    @keyframes education-intro-in { from { opacity: 0; filter: blur(.7rem); transform: translate3d(-4rem, 2rem, 0) rotate(-2deg); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes card-deal-in { from { opacity: 0; filter: blur(.55rem); transform: perspective(70rem) translate3d(4rem, 3rem, 0) rotateY(-18deg) rotateZ(var(--card-rotate)) scale(.92); } 72% { opacity: 1; filter: none; transform: perspective(70rem) translate3d(-.3rem, -.25rem, 0) rotateY(2deg) rotateZ(-.6deg) scale(1.01); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes grid-unmask { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+    @keyframes skill-flip-in { from { opacity: 0; transform: perspective(65rem) translateY(4rem) rotateX(-24deg) scale(.9); } 72% { opacity: 1; transform: perspective(65rem) translateY(-.25rem) rotateX(3deg) scale(1.01); } to { opacity: 1; transform: none; } }
+    @keyframes contact-burst-in { from { opacity: 0; filter: blur(.9rem); transform: scale(.86) rotate(-2deg); } 72% { opacity: 1; filter: none; transform: scale(1.018) rotate(.35deg); } to { opacity: 1; filter: none; transform: none; } }
+    @keyframes contact-accent { from { opacity: 0; transform: translateY(.9em) rotate(8deg) scale(.7); } 70% { opacity: 1; transform: translateY(-.08em) rotate(-2deg) scale(1.08); } to { opacity: 1; transform: none; } }
+    @keyframes contact-control-in { from { opacity: 0; transform: translateY(1.2rem) scale(.75) rotate(-5deg); } to { opacity: 1; transform: none; } }
 
     @media (max-width: 67rem) {
       .hero { min-height: auto; padding-top: 7rem; }
@@ -252,6 +346,10 @@
       .principle:last-child:nth-child(odd) { grid-column: 1 / -1; padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
       .project:hover { margin-inline: 0; padding-inline: 0; color: inherit; background: transparent; }
       .project:hover .project-copy p { color: var(--muted); }
+      .js #work .project.reveal { --enter-x: -2.5rem; }
+      .js #work .project.reveal:nth-child(even) { --enter-x: 2.5rem; }
+      .js #experience .role.reveal { --enter-x: -2.25rem; }
+      .js #experience .role.reveal:nth-child(even) { --enter-x: 2.25rem; }
       .role { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: 2.15rem 0; }
       .education-card { padding: 1.5rem; }
       .skill-card { padding: 1.5rem; }
@@ -295,6 +393,11 @@
       .js .site-loader { display: none; }
       .js body.is-loading { overflow: auto; }
       .js body.is-loading .site-header, .js .hero-copy.reveal > *, .js .portrait-wrap.reveal .portrait-frame, .js .portrait-wrap.reveal .portrait-label, .js .portrait-wrap.reveal .portrait-ring { opacity: 1; transform: none; }
+      .js main > section:not(.hero)::after { display: none; }
+      .js #about .reveal, .js #work .reveal, .js #experience .reveal, .js #education .reveal, .js #skills .reveal, .js #contact .reveal,
+      .js #about .principle, .js #work .tag, .js #experience .role-meta, .js #experience .role li, .js #skills .skill-card,
+      .js #contact h2 span, .js #contact .button { opacity: 1 !important; filter: none !important; transform: none !important; clip-path: none !important; }
+      .js #experience .timeline { clip-path: none !important; }
     }
   </style>
 </head>
@@ -506,7 +609,19 @@
       if (revealsStarted) return;
       revealsStarted = true;
 
+      const motionSections = document.querySelectorAll('main > section:not(.hero)');
+
       if ('IntersectionObserver' in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('section-in');
+              entry.target.querySelectorAll('.about-aside.reveal, .skills-grid.reveal').forEach((element) => element.classList.add('in'));
+              sectionObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .08, rootMargin: '0px 0px -8% 0px' });
+
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -515,8 +630,10 @@
             }
           });
         }, { threshold: .12 });
+        motionSections.forEach((section) => sectionObserver.observe(section));
         document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
       } else {
+        motionSections.forEach((section) => section.classList.add('section-in'));
         document.querySelectorAll('.reveal').forEach((element) => element.classList.add('in'));
       }
     };
