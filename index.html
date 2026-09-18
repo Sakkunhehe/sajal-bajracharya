@@ -91,9 +91,10 @@
     .portrait-ring::after { content: ""; position: absolute; inset: 1rem -.6rem; border: 1px dashed rgba(255,255,255,.25); border-radius: inherit; }
 
     .ticker { overflow: hidden; color: var(--white); background: var(--blue); border-block: 1px solid var(--ink); }
-    .ticker-track { width: max-content; display: flex; padding: .85rem 0; font-size: .71rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; animation: marquee 26s linear infinite; }
-    .ticker-track span { padding-right: 1.6rem; }
-    .ticker-track b { margin-right: 1.6rem; font-size: .9rem; }
+    .ticker-track { width: max-content; display: flex; font-size: .71rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; animation: marquee 28s linear infinite; will-change: transform; }
+    .ticker-group { width: max(100vw, 72rem); flex: none; display: flex; align-items: center; justify-content: space-around; gap: clamp(1rem, 2.25vw, 2.5rem); padding: .85rem clamp(.75rem, 2vw, 2rem); }
+    .ticker-track span { white-space: nowrap; }
+    .ticker-track b { flex: none; font-size: .9rem; }
 
     section { position: relative; }
     .section-pad { padding-block: clamp(5.25rem, 9vw, 8.5rem); }
@@ -440,8 +441,14 @@
     </section>
 
     <div class="ticker" aria-hidden="true"><div class="ticker-track">
-      <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
-      <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
+      <div class="ticker-group">
+        <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
+        <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
+      </div>
+      <div class="ticker-group">
+        <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
+        <span>SEO strategy</span><b>✦</b><span>Web design</span><b>✦</b><span>Data analysis</span><b>✦</b><span>Graphic design</span><b>✦</b>
+      </div>
     </div></div>
 
     <section class="section-pad" id="about" aria-labelledby="about-title">
